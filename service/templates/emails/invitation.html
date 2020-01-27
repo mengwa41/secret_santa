@@ -1,0 +1,12 @@
+<p>Merry Christmas,</p>
+<p>
+    {{ host_name }} has invited you to join {{ group_name }} for Secret Santa!<br>
+    Please click the link below to tell Santa your wishes. Please sign up before {{close_date}}.<br>
+    <a href="{{ url_for('main.preference', group_name=group_name, _external=True) }}">
+        Your wish list!
+    </a>.
+</p>
+<p>Alternatively, you can paste the following link in your browser's address bar:</p>
+<p>{{ url_for('main.preference', group_name=group_name, _external=True) }}</p>
+<p>Sincerely,</p>
+<p>Santa</p>

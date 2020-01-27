@@ -1,0 +1,51 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <h2>Please organize secret sante with your family and friend!</h2>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.group.label }}<br>
+            {{ form.group(size=32) }}<br>
+            {% for error in form.group.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.rsvp_close_date.label }}<br>
+            {{ form.rsvp_close_date(size=32) }}<br>
+            {% for error in form.rsvp_close_date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.reveal_date.label }}<br>
+            {{ form.reveal_date(size=32) }}<br>
+            {% for error in form.reveal_date.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.budget.label }}<br>
+            {{ form.budget(size=32) }}<br>
+            {% for error in form.budget.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.members.label }}<br>
+            {{ form.members(cols="64", rows="20") }}<br>
+            {% for error in form.members.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.host_join.label }}<br>
+            {{ form.host_join(cols="64", rows="20") }}<br>
+            {% for error in form.host_join.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}

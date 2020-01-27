@@ -1,0 +1,14 @@
+Merry Christmas,
+
+You are the Secret Santa for {{ santa }} in group {{ group_name }}!
+
+Here is his/her wish list:
+{{preference_first}}
+{{preference_second}}
+{{preference_third}}
+
+Please keep this to yourself to keep the Christmas miracle.
+
+Sincerely,
+
+Santa

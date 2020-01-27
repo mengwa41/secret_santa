@@ -1,0 +1,11 @@
+Merry Christmas,
+
+{{ host_name }} has invited you to join {{ group_name }} for Secret Santa!
+
+Please click the link below to tell Santa your wishes. Please sign up before {{close_date}}.
+
+{{ url_for('main.preference', group_name=group_name, _external=True) }}
+
+Sincerely,
+
+Santa

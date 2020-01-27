@@ -1,0 +1,15 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <p><a href="{{ url_for('main.groups') }}">Back</a></p>
+    <h2>You have invited these people to group {{ group }}:</h2>
+    <ul>
+        {% for member in members %}
+        {% if member in signup_members %}
+        <li>{{ member }} has signed up</li>
+        {% else %}
+        <li>{{ member }} has not signed up</li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
