@@ -1,0 +1,48 @@
+{% extends "header.html" %}
+
+{% block content %}
+    <p><a href="{{ url_for('main.user') }}">Back</a></p>
+    <h2>User: {{ user.username }}</h2>
+    <hr>
+    {% if host_groups|length == 0 %}
+    <p>You are currently not hosting any groups.</p>
+    {% else %}
+    <p>Groups you are hosting:</p>
+    <ul>
+        {% for host_group in host_groups %}
+        <p>
+        <li><b>{{ host_group.groupname }}:</b></li>
+            <p>RSVP close by: <b>{{ host_group.rsvp_close_date }}</b> and matches reveal on: <b>{{ host_group.reveal_date }}.</b>
+            <a href="{{ url_for('main.current_member', group_name=host_group.groupname) }}">Current members</a>
+            <a href="{{ url_for('main.add_member', group_name=host_group.groupname) }}">Invite more people</a>
+            <a href="{{ url_for('main.remove_member', group_name=host_group.groupname) }}">Remove member</a></p>
+            {% if today >= host_group.reveal_date %}
+            <p>Click <a href="{{ url_for('main.reveal', group_name=host_group.groupname) }}">here</a> to find out your group's matching results!</p>
+            {% endif %}
+        </p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <hr>
+    {% if groups|length == 0 %}
+    <p>You are currently not in any groups.</p>
+    {% else %}
+    <p>Groups you are invited to:</p>
+    <ul>
+        {% for group in groups %}
+        <p>
+        <li><b>{{ group.groupname }}:</b></li>
+            <p>RSVP close by: <b>{{ group.rsvp_close_date }}</b> and matches reveal on: <b>{{ group.reveal_date }}.</b></p>
+            {% if sign_up_func(group.id, user.email) %}
+            <p>You have signed up for the group. <a href="{{ url_for('main.preference', group_name=group.groupname) }}">Update your preferences</a></p>
+            {% else %}
+            <p>You haven't sign up yet. <a href="{{ url_for('main.preference', group_name=group.groupname) }}">To sign up</a></p>
+            {% endif %}
+            {% if today >= group.reveal_date %}
+            <p>Click <a href="{{ url_for('main.reveal_user', group_name=group.groupname, user_name=user.username) }}">here</a> to find out your match!</p>
+            {% endif %}
+        </p>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock %}
